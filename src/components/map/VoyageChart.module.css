@@ -90,6 +90,14 @@
   stroke-width: 0.6;
 }
 
+.wake {
+  stroke: var(--gold-route);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  opacity: 0.4;
+  fill: none;
+}
+
 .caption {
   display: flex;
   justify-content: space-between;

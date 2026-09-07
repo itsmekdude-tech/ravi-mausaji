@@ -67,14 +67,47 @@ a {
   inset: 0;
   z-index: 0;
   background:
+    /* horizon light band */
     radial-gradient(
-      120% 80% at 50% -10%,
-      color-mix(in srgb, var(--sea-shallow) calc(var(--depth) * 55%), var(--sea-deep))
-        0%,
-      var(--sea-deep) 55%,
+      140% 60% at 50% -6%,
+      color-mix(in srgb, var(--sea-shallow) calc(var(--depth) * 60%), transparent) 0%,
+      transparent 46%
+    ),
+    /* main depth gradient */
+    radial-gradient(
+      120% 90% at 50% -10%,
+      color-mix(in srgb, var(--sea-shallow) calc(var(--depth) * 40%), var(--sea-deep)) 0%,
+      var(--sea-deep) 52%,
       var(--sea-abyss) 100%
     );
   transition: background 900ms var(--ease-sail);
+}
+
+/* slow caustic sheen drifting over the water */
+.sea-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.012' numOctaves='2' seed='5'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+  animation: caustic 42s linear infinite alternate;
+}
+@keyframes caustic {
+  from { transform: translate3d(-3%, -2%, 0) scale(1.05); }
+  to { transform: translate3d(3%, 2%, 0) scale(1.15); }
+}
+
+/* faint site-wide film grain for a documentary feel */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
 /* ---------- Paper grain overlay ---------- *
@@ -85,9 +118,25 @@ a {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* faint coffee-stain / age blotches on parchment */
+.parchment-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
   opacity: 0.5;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background:
+    radial-gradient(60px 40px at 82% 12%, rgba(120, 92, 40, 0.1), transparent 70%),
+    radial-gradient(90px 60px at 12% 88%, rgba(120, 92, 40, 0.08), transparent 70%);
 }
 
 /* Reusable parchment surface (logbook pages, cards) */
@@ -145,4 +194,21 @@ a {
 :focus-visible {
   outline: 2px solid var(--phosphor);
   outline-offset: 3px;
+}
+
+/* Calm mode / reduced motion: still the ambient loops */
+@media (prefers-reduced-motion: reduce) {
+  .sea-backdrop::after {
+    animation: none;
+  }
+  .film-grain {
+    display: none;
+  }
+}
+
+html[data-calm='true'] .sea-backdrop::after {
+  animation: none;
+}
+html[data-calm='true'] .film-grain {
+  display: none;
 }

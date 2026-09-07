@@ -6,6 +6,7 @@ import { CompassRose } from './components/hud/CompassRose'
 import { ProgressRail } from './components/hud/ProgressRail'
 import { CalmToggle } from './components/hud/CalmToggle'
 import { TapeDeck } from './components/audio/TapeDeck'
+import { SvgFilters } from './components/fx/SvgFilters'
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useChapterInView } from './hooks/useChapterInView'
 import { useReducedMotion } from './hooks/useReducedMotion'
@@ -29,7 +30,9 @@ export default function App() {
 
   return (
     <>
+      <SvgFilters />
       <div className="sea-backdrop" aria-hidden="true" />
+      <div className="film-grain" aria-hidden="true" />
 
       <CalmToggle />
       <CompassRose heading={heading} />

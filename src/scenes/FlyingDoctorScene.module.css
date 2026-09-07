@@ -14,44 +14,52 @@
   opacity: 0.96;
 }
 
+.routeGhost {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 0.5;
+  stroke-dasharray: 1.5 1.5;
+  opacity: 0.4;
+}
+
 .route {
   fill: none;
   stroke: var(--brass-hi);
-  stroke-width: 0.6;
-  stroke-dasharray: 2 1.5;
-  opacity: 0.8;
+  stroke-width: 0.7;
+  stroke-linecap: round;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 1px color-mix(in srgb, var(--brass-hi) 60%, transparent));
+  transition: stroke-dashoffset 120ms linear;
 }
-
-.island {
-  fill: color-mix(in srgb, var(--copper-oxide) 40%, var(--parchment));
-  stroke: var(--copper-oxide);
-  stroke-width: 0.4;
-}
-
-.palm { fill: var(--copper-oxide); }
 
 .bubble { animation: bubbleIn 400ms var(--ease-settle) both; }
 @keyframes bubbleIn {
-  from { opacity: 0; transform: translateY(3px); }
+  from { opacity: 0; transform: translateY(3px) scale(0.8); }
   to { opacity: 1; transform: none; }
 }
 .bubbleFill { fill: var(--parchment-hi); stroke: var(--ink); stroke-width: 0.3; }
 .bubbleIcon { font-size: 4px; text-anchor: middle; }
 
-.heli { filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5)); }
+.heli { filter: drop-shadow(0 1.5px 1.5px rgba(0,0,0,0.55)); }
 .heliBody { fill: var(--soviet-red); stroke: var(--ink); stroke-width: 0.3; }
-.heliMast { fill: var(--ink); }
-.tail { stroke: var(--soviet-red); stroke-width: 1.2; stroke-linecap: round; }
+.canopy { fill: #bfe6ea; opacity: 0.8; stroke: var(--ink); stroke-width: 0.2; }
+.skid { stroke: #20282e; stroke-width: 0.5; stroke-linecap: round; }
+.tailRotor { stroke: var(--parchment-2); stroke-width: 0.3; }
 
-.rotor {
+.rotorDisc {
+  fill: var(--parchment-hi);
+  opacity: 0.22;
   stroke: var(--parchment-hi);
-  stroke-width: 0.5;
+  stroke-width: 0.2;
   transform-origin: center;
   transform-box: fill-box;
-  animation: spin 0.12s linear infinite;
+  animation: wobble 3s ease-in-out infinite;
 }
-.rotorStill { stroke: var(--parchment-hi); stroke-width: 0.5; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.rotorStill { fill: var(--parchment-hi); opacity: 0.22; }
+@keyframes wobble {
+  0%, 100% { opacity: 0.16; }
+  50% { opacity: 0.3; }
+}
 
 .note {
   position: absolute;
@@ -87,6 +95,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rotor { animation: none; }
+  .rotorDisc { animation: none; }
   .bubble { animation: none; }
+  .route { transition: none; }
 }

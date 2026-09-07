@@ -85,8 +85,12 @@
   --z-nav: 50;
   --z-overlay: 90;
 
-  /* --- Shadows --- */
+  /* --- Shadows & glows --- */
   --shadow-paper: 0 22px 60px -20px rgba(3, 10, 15, 0.7);
   --shadow-lift: 0 12px 34px -12px rgba(3, 10, 15, 0.65);
+  --shadow-figure: 0 10px 22px -8px rgba(3, 10, 15, 0.7);
   --edge-vignette: inset 0 0 160px rgba(3, 10, 15, 0.55);
+  --glow-phosphor: 0 0 14px rgba(0, 255, 156, 0.55);
+  --glow-brass: 0 0 16px rgba(230, 200, 120, 0.45);
+  --glow-lamp: 0 0 40px rgba(240, 185, 104, 0.5);
 }

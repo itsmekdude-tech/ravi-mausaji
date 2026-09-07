@@ -14,9 +14,15 @@
 }
 
 .ring {
-  fill: color-mix(in srgb, var(--sea-deep) 82%, transparent);
-  stroke: var(--brass);
-  stroke-width: 1.4;
+  /* fill supplied by url(#roseFace) gradient on the element */
+  stroke: var(--brass-shadow);
+  stroke-width: 0.6;
+}
+
+.glass {
+  fill: #ffffff;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .ringInner {

@@ -82,9 +82,10 @@ export function VoyageChart({ progress, activeNodeId }: Props) {
             )
           })}
 
-          {/* the ship */}
+          {/* the ship + wake */}
           <circle cx={ship.x} cy={ship.y} r={11} fill="url(#shipGlow)" />
           <g transform={`translate(${ship.x} ${ship.y}) rotate(${ship.angle})`}>
+            <path d="M-3,-3 L-14,-6 M-3,3 L-14,6" className={styles.wake} />
             <path d="M-4,3 L4,3 L6,-1 L0,-6 L-6,-1 Z" className={styles.ship} />
           </g>
         </svg>

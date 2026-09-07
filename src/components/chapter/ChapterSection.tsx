@@ -12,6 +12,13 @@ interface Props {
   reducedMotion: boolean
 }
 
+/** Cross-fade the sticky scene in as the track enters and out as it leaves. */
+function sceneFade(p: number): number {
+  const inFade = Math.min(1, p / 0.14)
+  const outFade = Math.min(1, (1 - p) / 0.14)
+  return Math.max(0, Math.min(inFade, outFade))
+}
+
 /**
  * One chapter = a tall scroll track with a sticky full-viewport stage.
  * The hero scene sits in the stage (pinned via position: sticky); the
@@ -33,7 +40,11 @@ export function ChapterSection({ chapter, active, reducedMotion }: Props) {
       aria-label={`Chapter ${chapter.index}: ${chapter.title}`}
     >
       <div className={styles.stage}>
-        <div className={styles.scene} aria-hidden="true">
+        <div
+          className={styles.scene}
+          aria-hidden="true"
+          style={{ opacity: reducedMotion ? 1 : sceneFade(progress) }}
+        >
           <Suspense fallback={<SceneFallback />}>
             <Scene
               progress={progress}

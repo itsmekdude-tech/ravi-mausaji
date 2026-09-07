@@ -30,18 +30,19 @@
   height: auto;
 }
 
-.wood { fill: #6b4526; }
-.edge { stroke: #3f2814; stroke-width: 1; }
-.book { fill: #7a2a24; }
-.bookGrain { fill: url(#none); stroke: #4c1712; stroke-width: 1; }
-.bookRule { stroke: var(--brass-hi); stroke-width: 0.6; opacity: 0.7; }
-.crest { fill: none; stroke: var(--brass-hi); stroke-width: 1; }
-.crestStar { fill: var(--brass-hi); }
-.compass { fill: #24313b; stroke: var(--brass); stroke-width: 1.2; }
-.compassInner { fill: none; stroke: var(--brass-shadow); stroke-width: 0.6; }
-.needle { fill: var(--soviet-red); }
-.plate { fill: #d8cbb0; stroke: #b7a67d; stroke-width: 0.8; }
-.jamun { fill: #6a3b1e; }
+.glow {
+  mix-blend-mode: screen;
+}
+
+.steam {
+  transform-origin: 46px 80px;
+  animation: rise 5s ease-in-out infinite;
+}
+@keyframes rise {
+  0% { opacity: 0; transform: translateY(4px) scaleY(0.9); }
+  40% { opacity: 0.35; }
+  100% { opacity: 0; transform: translateY(-6px) scaleY(1.1); }
+}
 
 .count {
   position: absolute;

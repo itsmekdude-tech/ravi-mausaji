@@ -23,6 +23,8 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-scene);
+  transition: opacity 200ms linear;
+  will-change: opacity;
 }
 
 /* Logbook page carrying the prose. */
@@ -115,14 +117,23 @@
   hyphens: auto;
 }
 
-.body p::first-letter {
-  /* subtle initial emphasis on the opening paragraph only */
-}
-
+/* drop-cap on the opening paragraph of story chapters */
 .body p:first-child::first-letter {
   font-family: var(--font-prose);
   font-weight: 600;
-  font-size: 1.15em;
+  font-size: 3.1em;
+  line-height: 0.82;
+  float: left;
+  padding: 0.05em 0.12em 0 0;
+  color: color-mix(in srgb, var(--accent) 72%, var(--ink));
+}
+
+.cardCenter .body p:first-child::first-letter {
+  /* bookends read as centered prose — no drop-cap */
+  float: none;
+  font-size: 1em;
+  color: inherit;
+  padding: 0;
 }
 
 /* ---------- Responsive: stack on narrow screens ---------- */

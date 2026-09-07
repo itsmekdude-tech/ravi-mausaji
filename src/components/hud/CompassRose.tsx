@@ -25,7 +25,20 @@ export function CompassRose({ heading }: { heading: number }) {
   return (
     <div className={styles.wrap} aria-hidden="true">
       <svg viewBox="0 0 100 100" className={styles.rose}>
-        <circle cx="50" cy="50" r="46" className={styles.ring} />
+        <defs>
+          <radialGradient id="roseFace" cx="42%" cy="36%" r="72%">
+            <stop offset="0%" stopColor="#183039" />
+            <stop offset="100%" stopColor="#08161d" />
+          </radialGradient>
+          <linearGradient id="roseBezel" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#e6c878" />
+            <stop offset="45%" stopColor="#c9a24b" />
+            <stop offset="62%" stopColor="#8a6b28" />
+            <stop offset="100%" stopColor="#d8b45e" />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#roseBezel)" />
+        <circle cx="50" cy="50" r="46" fill="url(#roseFace)" className={styles.ring} />
         <circle cx="50" cy="50" r="38" className={styles.ringInner} />
         {Array.from({ length: 24 }).map((_, i) => {
           const a = (i / 24) * Math.PI * 2
@@ -55,11 +68,13 @@ export function CompassRose({ heading }: { heading: number }) {
             </text>
           )
         })}
-        <g transform={`rotate(${display} 50 50)`} className={styles.needleGroup}>
-          <polygon points="50,14 46,50 54,50" className={styles.needleN} />
-          <polygon points="50,86 46,50 54,50" className={styles.needleS} />
+        <g transform={`rotate(${display} 50 50)`} className={styles.needleGroup} filter="url(#softGlow)">
+          <polygon points="50,15 46.5,50 53.5,50" className={styles.needleN} />
+          <polygon points="50,85 46.5,50 53.5,50" className={styles.needleS} />
         </g>
         <circle cx="50" cy="50" r="3.4" className={styles.hub} />
+        {/* glass reflection */}
+        <ellipse cx="40" cy="34" rx="20" ry="12" className={styles.glass} />
       </svg>
       <span className={styles.readout}>{Math.round((display + 360) % 360)}°</span>
     </div>
