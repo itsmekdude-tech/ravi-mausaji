@@ -1,0 +1,300 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background:
+    radial-gradient(120% 100% at 50% 30%, #0b2029 0%, var(--sea-abyss) 100%);
+  display: grid;
+  place-items: center;
+  animation: fadeIn 320ms var(--ease-settle) both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.chartWrap {
+  position: absolute;
+  inset: 4.5rem 1rem 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 40px rgba(0, 0, 0, 0.5));
+}
+
+.route {
+  fill: none;
+  stroke: var(--gold-route);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.85;
+  filter: url(#softGlow);
+}
+
+/* --- island markers --- */
+.marker {
+  cursor: pointer;
+}
+.markerDisabled {
+  cursor: default;
+}
+.isle {
+  stroke: #3f5738;
+  stroke-width: 1;
+  transition: transform var(--dur-fast) var(--ease-settle);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.marker:hover .isle {
+  transform: scale(1.12);
+}
+.isleShadow {
+  fill: #04121a;
+  opacity: 0.5;
+}
+.currentRing {
+  fill: none;
+  stroke: var(--gold-route);
+  stroke-width: 2;
+  opacity: 0.8;
+  filter: url(#softGlow);
+}
+.tick {
+  fill: var(--phosphor-dim);
+  stroke: var(--phosphor);
+  stroke-width: 1;
+}
+.tickMark {
+  fill: none;
+  stroke: var(--parchment-hi);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.markerLabel {
+  fill: var(--parchment);
+  font-family: var(--font-label);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(4, 12, 18, 0.7);
+  stroke-width: 3px;
+}
+.marker:focus-visible {
+  outline: none;
+}
+.marker:focus-visible .isle {
+  transform: scale(1.12);
+}
+.marker:focus-visible .currentRing,
+.marker:focus-visible .isleShadow {
+  filter: drop-shadow(0 0 4px var(--phosphor));
+}
+
+/* --- ship --- */
+.ship {
+  fill: var(--gold-route);
+  stroke: var(--brass-shadow);
+  stroke-width: 1;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+}
+.shipLamp {
+  fill: var(--soviet-red);
+  stroke: none;
+}
+
+/* --- top bar --- */
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.9rem clamp(1rem, 3vw, 2rem);
+}
+.kicker {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+  font-size: var(--fs-kicker);
+  color: var(--soviet-red);
+}
+.title {
+  font-family: var(--font-prose);
+  font-weight: 600;
+  font-size: var(--fs-lead);
+  color: var(--parchment-hi);
+  line-height: 1;
+}
+.log {
+  margin-left: auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+.logNum {
+  font-family: var(--font-prose);
+  font-weight: 600;
+  font-size: var(--fs-lead);
+  color: var(--brass-hi);
+  line-height: 1;
+}
+.logLabel {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: var(--fs-micro);
+  color: var(--parchment-2);
+}
+.close {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--brass-shadow);
+  background: color-mix(in srgb, var(--sea-deep) 70%, transparent);
+  color: var(--parchment);
+  font-size: 1.1rem;
+  transition: border-color var(--dur-fast) var(--ease-settle);
+}
+.close:hover {
+  border-color: var(--brass);
+}
+
+.hint {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: var(--fs-micro);
+  color: var(--parchment-2);
+  background: color-mix(in srgb, var(--sea-abyss) 60%, transparent);
+  padding: 0.35rem 0.9rem;
+  border-radius: 40px;
+  pointer-events: none;
+}
+
+/* --- completion badge --- */
+.badge {
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: min(90vw, 30rem);
+  padding: 0.7rem 1.1rem;
+  background: color-mix(in srgb, var(--brass) 16%, var(--sea-deep));
+  border: 1px solid var(--brass);
+  border-radius: 4px;
+  color: var(--parchment-hi);
+  font-size: var(--fs-label);
+  animation: fadeIn 400ms var(--ease-settle) both;
+}
+.badgeMark {
+  font-size: 1.6rem;
+}
+
+/* --- story card --- */
+.card {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 3vw, 2.5rem);
+  transform: translateY(-50%);
+  width: min(30rem, 42vw);
+  max-height: 76vh;
+  overflow: auto;
+  padding: clamp(1.2rem, 2vw, 2rem);
+  border-radius: 3px 10px 8px 3px;
+  animation: cardSlide 400ms var(--ease-settle) both;
+}
+@keyframes cardSlide {
+  from { opacity: 0; transform: translate(24px, -50%); }
+  to { opacity: 1; transform: translate(0, -50%); }
+}
+.cardClose {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+.cardKicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+  font-size: var(--fs-kicker);
+  color: var(--soviet-red);
+}
+.cardMotif {
+  font-size: 1.3rem;
+}
+.cardTitle {
+  font-family: var(--font-prose);
+  font-weight: 600;
+  font-size: var(--fs-lead);
+  margin: 0.3rem 0 0.9rem;
+  color: var(--ink);
+}
+.cardBody {
+  font-size: var(--fs-body);
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+  max-width: 38ch;
+}
+.cardQuote {
+  margin-top: 0.8rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--brass);
+  font-size: var(--fs-quote);
+  color: var(--ink);
+}
+
+/* --- responsive: card becomes a bottom sheet --- */
+@media (max-width: 780px) {
+  .chartWrap {
+    inset: 4.5rem 0.5rem 40vh;
+  }
+  .card {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: auto;
+    max-height: 38vh;
+    transform: none;
+    border-radius: 10px 10px 0 0;
+  }
+  @keyframes cardSlide {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  .hint { display: none; }
+  .markerLabel { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .badge,
+  .card {
+    animation: none;
+  }
+  .isle {
+    transition: none;
+  }
+}

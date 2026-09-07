@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import { chapters } from './data/chapters'
 import { ChapterSection } from './components/chapter/ChapterSection'
 import { VoyageChart } from './components/map/VoyageChart'
@@ -7,6 +7,10 @@ import { ProgressRail } from './components/hud/ProgressRail'
 import { CalmToggle } from './components/hud/CalmToggle'
 import { TapeDeck } from './components/audio/TapeDeck'
 import { SvgFilters } from './components/fx/SvgFilters'
+import { SetSailButton } from './components/game/SetSailButton'
+const IslandGame = lazy(() =>
+  import('./components/game/IslandGame').then((m) => ({ default: m.IslandGame })),
+)
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useChapterInView } from './hooks/useChapterInView'
 import { useReducedMotion } from './hooks/useReducedMotion'
@@ -15,6 +19,7 @@ export default function App() {
   const progress = useScrollProgress()
   const active = useChapterInView(chapters.length)
   const reducedMotion = useReducedMotion()
+  const [gameOpen, setGameOpen] = useState(false)
 
   const activeChapter = chapters[active] ?? chapters[0]
   const heading = activeChapter.node?.heading ?? 0
@@ -39,6 +44,12 @@ export default function App() {
       <VoyageChart progress={progress} activeNodeId={activeChapter.node?.id} />
       <ProgressRail chapters={chapters} active={active} />
       <TapeDeck />
+      <SetSailButton onClick={() => setGameOpen(true)} />
+      {gameOpen && (
+        <Suspense fallback={null}>
+          <IslandGame onClose={() => setGameOpen(false)} />
+        </Suspense>
+      )}
 
       <main>
         {chapters.map((chapter) => (
