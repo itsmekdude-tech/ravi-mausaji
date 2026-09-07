@@ -13,8 +13,9 @@ dist-ssr
 *.local
 
 # Mausaji's original voice recordings — kept private (public repo).
-# Add chosen short clips to public/audio/ when wiring the audio layer.
+# These power the local "family edition" audio; not deployed.
 recordings/
+public/audio/
 
 # Editor directories and files
 .vscode/*

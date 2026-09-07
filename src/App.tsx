@@ -5,6 +5,7 @@ import { VoyageChart } from './components/map/VoyageChart'
 import { CompassRose } from './components/hud/CompassRose'
 import { ProgressRail } from './components/hud/ProgressRail'
 import { CalmToggle } from './components/hud/CalmToggle'
+import { TapeDeck } from './components/audio/TapeDeck'
 import { useScrollProgress } from './hooks/useScrollProgress'
 import { useChapterInView } from './hooks/useChapterInView'
 import { useReducedMotion } from './hooks/useReducedMotion'
@@ -34,6 +35,7 @@ export default function App() {
       <CompassRose heading={heading} />
       <VoyageChart progress={progress} activeNodeId={activeChapter.node?.id} />
       <ProgressRail chapters={chapters} active={active} />
+      <TapeDeck />
 
       <main>
         {chapters.map((chapter) => (
