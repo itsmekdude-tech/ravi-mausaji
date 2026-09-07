@@ -1,0 +1,28 @@
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.compass {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--brass);
+  border-top-color: transparent;
+  opacity: 0.6;
+  animation: spin 1.4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compass {
+    animation: none;
+  }
+}

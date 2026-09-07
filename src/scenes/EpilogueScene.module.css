@@ -1,0 +1,62 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--lamp-glow) calc(var(--warm) * 26%), var(--sea-deep)) 0%,
+      color-mix(in srgb, var(--lamp-glow) calc(var(--warm) * 40%), var(--sea-abyss)) 100%
+    );
+  transition: background 600ms var(--ease-sail);
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    50% 40% at 50% 34%,
+    color-mix(in srgb, var(--lamp-glow) calc(var(--warm) * 55%), transparent) 0%,
+    transparent 70%
+  );
+}
+
+.table {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: min(70vw, 620px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+}
+
+.wood { fill: #6b4526; }
+.edge { stroke: #3f2814; stroke-width: 1; }
+.book { fill: #7a2a24; }
+.bookGrain { fill: url(#none); stroke: #4c1712; stroke-width: 1; }
+.bookRule { stroke: var(--brass-hi); stroke-width: 0.6; opacity: 0.7; }
+.crest { fill: none; stroke: var(--brass-hi); stroke-width: 1; }
+.crestStar { fill: var(--brass-hi); }
+.compass { fill: #24313b; stroke: var(--brass); stroke-width: 1.2; }
+.compassInner { fill: none; stroke: var(--brass-shadow); stroke-width: 0.6; }
+.needle { fill: var(--soviet-red); }
+.plate { fill: #d8cbb0; stroke: #b7a67d; stroke-width: 0.8; }
+.jamun { fill: #6a3b1e; }
+
+.count {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-hand);
+  font-size: var(--fs-quote);
+  color: color-mix(in srgb, var(--lamp-glow) 70%, var(--parchment));
+  opacity: calc(var(--warm) * 0.9);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--edge-vignette);
+  pointer-events: none;
+}

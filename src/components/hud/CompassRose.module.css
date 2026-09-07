@@ -1,0 +1,80 @@
+.wrap {
+  position: fixed;
+  top: clamp(0.8rem, 2vw, 1.4rem);
+  right: clamp(0.8rem, 2vw, 1.4rem);
+  z-index: var(--z-hud);
+  width: clamp(66px, 8vw, 96px);
+  text-align: center;
+  filter: drop-shadow(0 6px 14px rgba(3, 10, 15, 0.5));
+}
+
+.rose {
+  width: 100%;
+  height: auto;
+}
+
+.ring {
+  fill: color-mix(in srgb, var(--sea-deep) 82%, transparent);
+  stroke: var(--brass);
+  stroke-width: 1.4;
+}
+
+.ringInner {
+  fill: none;
+  stroke: var(--brass-shadow);
+  stroke-width: 0.6;
+  opacity: 0.6;
+}
+
+.tick {
+  stroke: var(--parchment-2);
+  stroke-width: 0.6;
+  opacity: 0.5;
+}
+
+.tickLong {
+  stroke: var(--brass-hi);
+  stroke-width: 1;
+}
+
+.cardinal {
+  font-family: var(--font-label);
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--parchment);
+  text-anchor: middle;
+  letter-spacing: 0.05em;
+}
+
+.needleGroup {
+  transition: none;
+}
+
+.needleN {
+  fill: var(--soviet-red);
+}
+
+.needleS {
+  fill: var(--parchment-2);
+}
+
+.hub {
+  fill: var(--brass-hi);
+  stroke: var(--brass-shadow);
+  stroke-width: 0.6;
+}
+
+.readout {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-family: var(--font-label);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  color: var(--brass-hi);
+}
+
+@media (max-width: 640px) {
+  .readout {
+    display: none;
+  }
+}

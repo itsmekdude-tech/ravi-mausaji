@@ -1,0 +1,42 @@
+.quote {
+  position: relative;
+  margin-top: 1.6rem;
+  padding: 1rem 1.1rem 1rem 1.4rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.mark {
+  position: absolute;
+  top: -0.6rem;
+  left: 0.5rem;
+  font-family: var(--font-prose);
+  font-size: 3rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent) 55%, var(--ink));
+  opacity: 0.5;
+}
+
+.text {
+  font-size: var(--fs-quote);
+  color: var(--ink);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.gloss {
+  margin-top: 0.4rem;
+  font-family: var(--font-prose);
+  font-style: italic;
+  font-size: var(--fs-label);
+  color: var(--ink-soft);
+}
+
+.cite {
+  margin-top: 0.5rem;
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+}

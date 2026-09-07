@@ -1,0 +1,92 @@
+/* ============================================================
+   Logbook of the High Seas — Design Tokens
+   One place to tune the whole aesthetic: parchment + ink,
+   radar phosphor, blueprint blue, brass, and a warm "now" lamp.
+   Mirrored for 3D/JS use in src/theme/palette.ts
+   ============================================================ */
+
+:root {
+  /* --- Parchment & ink (the logbook paper) --- */
+  --parchment: #e9ddc3;
+  --parchment-2: #ded0b0;
+  --parchment-hi: #f3ead4; /* lit paper */
+  --ink: #23303b; /* the pen */
+  --ink-soft: #4a5a63;
+  --ink-faint: #8a8368;
+
+  /* --- The sea (deep chart water) --- */
+  --sea-abyss: #061019;
+  --sea-deep: #0b1f2a;
+  --sea: #123543;
+  --sea-shallow: #1f5763;
+  --sea-foam: #6fb0ad;
+
+  /* --- Radar / phosphor (Chapter 1 accents) --- */
+  --phosphor: #00ff9c;
+  --phosphor-dim: #0a7f56;
+  --phosphor-glow: rgba(0, 255, 156, 0.55);
+
+  /* --- Blueprint (diagrams & labels) --- */
+  --blueprint: #2b6f86;
+  --blueprint-line: #5b93a6;
+
+  /* --- Metals --- */
+  --brass: #c9a24b;
+  --brass-hi: #e6c878;
+  --brass-shadow: #8a6b28;
+  --copper-oxide: #4c7d70;
+
+  /* --- Signal & warmth --- */
+  --soviet-red: #b8412f;
+  --soviet-red-hi: #d65a44;
+  --lamp-glow: #f0b968; /* the "now" / epilogue warmth */
+  --gold-route: #e8c46a; /* the inking voyage line */
+
+  /* --- Semantic surfaces --- */
+  --bg: var(--sea-deep);
+  --paper: var(--parchment);
+  --paper-edge: #b7a67d;
+
+  /* --- Typography --- */
+  --font-prose: 'Spectral', 'Iowan Old Style', Georgia, serif;
+  --font-label: 'Oswald', 'Helvetica Neue', sans-serif;
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
+
+  --fs-micro: clamp(0.66rem, 0.6rem + 0.3vw, 0.78rem);
+  --fs-label: clamp(0.72rem, 0.66rem + 0.35vw, 0.9rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.5vw, 1.2rem);
+  --fs-lead: clamp(1.2rem, 1.05rem + 0.9vw, 1.55rem);
+  --fs-quote: clamp(1.5rem, 1.2rem + 2.2vw, 2.8rem);
+  --fs-title: clamp(2rem, 1.4rem + 4vw, 4.6rem);
+  --fs-kicker: clamp(0.7rem, 0.62rem + 0.5vw, 0.95rem);
+
+  --tracking-label: 0.28em;
+  --tracking-kicker: 0.42em;
+
+  /* --- Space & rhythm --- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --measure: 40ch; /* prose line length */
+
+  /* --- Motion --- */
+  --ease-sail: cubic-bezier(0.33, 0.02, 0.15, 1); /* slow, weighty */
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-slow: 1200ms;
+  --dur-med: 600ms;
+  --dur-fast: 280ms;
+
+  /* --- Depth --- */
+  --z-scene: 1;
+  --z-content: 10;
+  --z-hud: 40;
+  --z-nav: 50;
+  --z-overlay: 90;
+
+  /* --- Shadows --- */
+  --shadow-paper: 0 22px 60px -20px rgba(3, 10, 15, 0.7);
+  --shadow-lift: 0 12px 34px -12px rgba(3, 10, 15, 0.65);
+  --edge-vignette: inset 0 0 160px rgba(3, 10, 15, 0.55);
+}

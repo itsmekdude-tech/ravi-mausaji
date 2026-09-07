@@ -1,0 +1,38 @@
+.btn {
+  position: fixed;
+  top: clamp(0.8rem, 2vw, 1.4rem);
+  left: clamp(0.8rem, 2vw, 1.4rem);
+  z-index: var(--z-hud);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--brass-shadow);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--sea-deep) 72%, transparent);
+  color: var(--parchment);
+  transition: border-color var(--dur-fast) var(--ease-settle);
+}
+
+.btn:hover {
+  border-color: var(--brass);
+}
+
+.icon {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--brass-hi);
+}
+
+.label {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: var(--fs-micro);
+}
+
+@media (max-width: 640px) {
+  .label {
+    display: none;
+  }
+}

@@ -1,0 +1,90 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 100% at 40% 30%, #123a44 0%, var(--sea-deep) 55%, var(--sea-abyss) 100%);
+}
+
+.reel {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(56vw, 620px);
+  display: grid;
+  place-items: center;
+}
+
+.gauge {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  background: color-mix(in srgb, var(--sea-abyss) 60%, transparent);
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.gaugeLabel,
+.gaugeVal {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: var(--fs-micro);
+  color: var(--brass-hi);
+}
+
+.gaugeTrack {
+  width: clamp(80px, 12vw, 160px);
+  height: 5px;
+  background: color-mix(in srgb, var(--brass-shadow) 40%, transparent);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.gaugeFill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brass-shadow), var(--brass-hi));
+}
+
+.menu {
+  position: absolute;
+  right: clamp(1rem, 5vw, 4rem);
+  bottom: 12%;
+  z-index: var(--z-content);
+}
+
+/* static fallback */
+.staticReel {
+  width: min(40vh, 300px);
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
+}
+.srCap { fill: var(--brass-hi); stroke: var(--brass-shadow); stroke-width: 1; }
+.srBody { fill: var(--brass); }
+.srCoil { fill: var(--copper-oxide); }
+.srRope { stroke: var(--parchment); stroke-width: 2; }
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--edge-vignette);
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .reel {
+    width: 100%;
+    inset: 0 0 auto 0;
+    height: 60vh;
+  }
+  .menu {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 4%;
+  }
+}

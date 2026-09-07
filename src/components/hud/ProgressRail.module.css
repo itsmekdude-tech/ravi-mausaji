@@ -1,0 +1,93 @@
+.rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(0.4rem, 1.4vw, 1rem);
+  transform: translateY(-50%);
+  z-index: var(--z-nav);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  align-items: flex-end;
+}
+
+.bead {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.15rem;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--brass);
+  background: transparent;
+  transition:
+    background var(--dur-fast) var(--ease-settle),
+    transform var(--dur-fast) var(--ease-settle);
+}
+
+.bead:hover .dot {
+  background: color-mix(in srgb, var(--brass) 50%, transparent);
+}
+
+.on .dot {
+  background: var(--brass-hi);
+  transform: scale(1.5);
+  box-shadow: 0 0 8px var(--brass-hi);
+}
+
+.tip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-fast) var(--ease-settle),
+    transform var(--dur-fast) var(--ease-settle);
+}
+
+.bead:hover .tip,
+.on .tip {
+  opacity: 1;
+  transform: none;
+}
+
+.tipNum {
+  font-family: var(--font-label);
+  font-size: var(--fs-micro);
+  color: var(--brass-hi);
+}
+
+.tipLabel {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--fs-micro);
+  color: var(--parchment);
+  background: color-mix(in srgb, var(--sea-deep) 78%, transparent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* order: dot should sit to the right of the tip */
+.bead {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 640px) {
+  .tip {
+    display: none;
+  }
+  .list {
+    gap: 0.7rem;
+  }
+}

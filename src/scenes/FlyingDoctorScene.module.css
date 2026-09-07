@@ -1,0 +1,92 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 100% at 50% 20%, #10424a 0%, var(--sea-deep) 60%, var(--sea-abyss) 100%);
+}
+
+.chart {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.96;
+}
+
+.route {
+  fill: none;
+  stroke: var(--brass-hi);
+  stroke-width: 0.6;
+  stroke-dasharray: 2 1.5;
+  opacity: 0.8;
+}
+
+.island {
+  fill: color-mix(in srgb, var(--copper-oxide) 40%, var(--parchment));
+  stroke: var(--copper-oxide);
+  stroke-width: 0.4;
+}
+
+.palm { fill: var(--copper-oxide); }
+
+.bubble { animation: bubbleIn 400ms var(--ease-settle) both; }
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+.bubbleFill { fill: var(--parchment-hi); stroke: var(--ink); stroke-width: 0.3; }
+.bubbleIcon { font-size: 4px; text-anchor: middle; }
+
+.heli { filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5)); }
+.heliBody { fill: var(--soviet-red); stroke: var(--ink); stroke-width: 0.3; }
+.heliMast { fill: var(--ink); }
+.tail { stroke: var(--soviet-red); stroke-width: 1.2; stroke-linecap: round; }
+
+.rotor {
+  stroke: var(--parchment-hi);
+  stroke-width: 0.5;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: spin 0.12s linear infinite;
+}
+.rotorStill { stroke: var(--parchment-hi); stroke-width: 0.5; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.note {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(80vw, 32rem);
+  text-align: center;
+  background: color-mix(in srgb, var(--sea-abyss) 60%, transparent);
+  padding: 0.7rem 1rem;
+  border-radius: 3px;
+  font-family: var(--font-prose);
+  font-style: italic;
+  font-size: var(--fs-label);
+  color: var(--parchment);
+}
+.noteLabel {
+  display: block;
+  font-family: var(--font-label);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.6rem;
+  color: var(--copper-oxide);
+  margin-bottom: 0.2rem;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--edge-vignette);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotor { animation: none; }
+  .bubble { animation: none; }
+}

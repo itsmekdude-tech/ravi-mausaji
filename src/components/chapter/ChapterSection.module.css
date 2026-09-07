@@ -1,0 +1,152 @@
+.track {
+  position: relative;
+  min-height: 220vh;
+  z-index: var(--z-content);
+}
+
+.track.bookend {
+  min-height: 150vh;
+}
+
+/* The sticky stage that stays put while the track scrolls past it. */
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr min(42vw, 30rem);
+  align-items: center;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-scene);
+}
+
+/* Logbook page carrying the prose. */
+.card {
+  position: relative;
+  grid-column: 2;
+  z-index: var(--z-content);
+  margin-right: clamp(1rem, 4vw, 4rem);
+  padding: clamp(1.4rem, 2.4vw, 2.6rem);
+  border-radius: 3px 10px 8px 3px;
+  max-height: 84vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  animation: cardIn 900ms var(--ease-settle) both;
+}
+
+.cardCenter {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin: 0;
+  max-width: min(46rem, 90vw);
+  text-align: center;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) rotate(-0.3deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--paper-edge);
+}
+
+.kicker {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+  font-size: var(--fs-kicker);
+  color: color-mix(in srgb, var(--accent) 78%, var(--ink));
+}
+
+.date {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+}
+
+.title {
+  font-family: var(--font-prose);
+  font-weight: 600;
+  font-size: var(--fs-lead);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+  text-wrap: balance;
+}
+
+.bookend .title {
+  font-size: var(--fs-title);
+  font-weight: 500;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: var(--measure);
+}
+
+.cardCenter .body {
+  margin-inline: auto;
+}
+
+.body p {
+  font-size: var(--fs-body);
+  color: var(--ink);
+  hyphens: auto;
+}
+
+.body p::first-letter {
+  /* subtle initial emphasis on the opening paragraph only */
+}
+
+.body p:first-child::first-letter {
+  font-family: var(--font-prose);
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
+/* ---------- Responsive: stack on narrow screens ---------- */
+@media (max-width: 860px) {
+  .track {
+    min-height: 200vh;
+  }
+  .stage {
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+  .card {
+    grid-column: 1;
+    justify-self: stretch;
+    margin: 0 0.8rem 4.5rem;
+    max-height: 68vh;
+  }
+  .cardCenter {
+    margin-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+}

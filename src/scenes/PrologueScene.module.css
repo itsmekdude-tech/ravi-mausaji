@@ -1,0 +1,90 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--sea-abyss) 0%, #0a2231 58%, #0d2c38 62%, var(--sea-deep) 100%);
+}
+
+.sky {
+  position: absolute;
+  inset: 0 0 42% 0;
+  will-change: transform;
+}
+
+.stars {
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  fill: var(--parchment-hi);
+  opacity: 0.5;
+}
+
+.twinkle {
+  animation-name: tw;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tw {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
+
+.moon {
+  fill: var(--parchment-hi);
+}
+
+.moonGlow {
+  fill: var(--parchment-hi);
+  opacity: 0.12;
+}
+
+.sea {
+  position: absolute;
+  inset: 58% 0 0 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--sea-shallow) 40%, var(--sea-deep)) 0%, var(--sea-abyss) 100%);
+  will-change: transform;
+}
+
+.glitter {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 6px,
+      rgba(240, 234, 212, 0.05) 6px 7px
+    );
+  mask-image: radial-gradient(60% 90% at 76% 0%, black, transparent 70%);
+}
+
+.ship {
+  position: absolute;
+  left: 8%;
+  top: 46%;
+  width: clamp(120px, 20vw, 260px);
+  will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.hull {
+  fill: #071a24;
+  stroke: var(--ink);
+  stroke-width: 0.5;
+}
+
+.mast {
+  stroke: #071a24;
+  stroke-width: 1.4;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--edge-vignette);
+  pointer-events: none;
+}
